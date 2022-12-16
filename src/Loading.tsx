@@ -9,7 +9,7 @@ import {AiOutlineLoading3Quarters} from "react-icons/ai"
 class Loading extends PureComponent<LoadingProps>{
   
   render(): React.ReactNode{ 
-  return ( <div className= " text-white  text-4xl flex flex-col items-center justify-center h-64 font-medium  ">
+  return ( <div className= " text-gray-600  text-4xl flex flex-col items-center justify-center h-64 font-medium  ">
 < AiOutlineLoading3Quarters className="animate-spin"/></div>
   )
   }}
