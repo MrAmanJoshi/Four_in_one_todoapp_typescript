@@ -4,7 +4,6 @@ import DigitalTime from "./DigitalTime"
 import Weather from "./Weather"
 import { Route, Routes } from "react-router"
 import TicTacToe from "./TicTacToe"
-import Input from "./Input"
 import UnitConvaterPage from "./UnitConvaterPage"
 
   function App() {

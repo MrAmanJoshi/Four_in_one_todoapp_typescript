@@ -13,11 +13,11 @@ const TicTacToe: FC<TicTacToePropd> = ()=> {
   const [gameState, setGameState] = useState(initialValue);
   const [move, setMove] = useState(0);
   const [winner, setWinner] = useState<winnerState>();
-  
+  console.log("winner", winner)
   const [scoreX, setScoreX] = useState(0)
   const [scoreO, setScoreO] = useState(0)
-  const [player1, setPlayer1] = useState<playerState>();
-  const [player2, setPlayer2] = useState<playerState>()
+  const [player1, setPlayer1] = useState<playerState>("");
+  const [player2, setPlayer2] = useState<playerState>("")
   const [gamePage, setGamePage] = useState(false);
 
   const handlePlayer1 = (e: ChangeEvent<HTMLInputElement>)=>{
@@ -33,7 +33,7 @@ const TicTacToe: FC<TicTacToePropd> = ()=> {
     let newGameState = [...gameState]; 
     newGameState[index] = (move % 2 === 0 ? "X": "O");
     setGameState(newGameState);
-    setMove(move + 1)
+    setMove(move + 1);
     }
   }
   useEffect(()=>{
@@ -60,17 +60,16 @@ if(gameState[a] && gameState[a] == gameState[b] && gameState[b] == gameState[c])
   
   setGameState(initialValue);
   
-  if(gameState[a] === "X"){
-    
-setWinner(player1);  
-  } else if(gameState[a] = "O"){
-    setWinner(player2)
+  if(gameState[a] === "X"){  
+  setWinner(player1);  
+  } else if(gameState[a] === "O"){
+    setWinner(player2);
   }
 } });
     
-    if(winner === "X"){
+    if(winner === player1){
       setScoreX( scoreX + 1)
-    } else if (winner === "O"){
+    } else if (winner === player2){
   setScoreO(scoreO + 1)      
     }
   }
