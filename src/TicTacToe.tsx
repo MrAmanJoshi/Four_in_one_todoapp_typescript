@@ -16,8 +16,8 @@ const TicTacToe: FC<TicTacToePropd> = ()=> {
   console.log("winner", winner)
   const [scoreX, setScoreX] = useState(0)
   const [scoreO, setScoreO] = useState(0)
-  const [player1, setPlayer1] = useState<playerState>("");
-  const [player2, setPlayer2] = useState<playerState>("")
+  const [player1, setPlayer1] = useState<playerState>();
+  const [player2, setPlayer2] = useState<playerState>()
   const [gamePage, setGamePage] = useState(false);
 
   const handlePlayer1 = (e: ChangeEvent<HTMLInputElement>)=>{
@@ -58,18 +58,19 @@ const TicTacToe: FC<TicTacToePropd> = ()=> {
      
 if(gameState[a] && gameState[a] == gameState[b] && gameState[b] == gameState[c]){
   
-  setGameState(initialValue);
   
   if(gameState[a] === "X"){  
   setWinner(player1);  
   } else if(gameState[a] === "O"){
     setWinner(player2);
   }
+  
+  setGameState(initialValue);
 } });
     
-    if(winner === player1){
+    if(winner === 'X'){
       setScoreX( scoreX + 1)
-    } else if (winner === player2){
+    } else if (winner === 'O'){
   setScoreO(scoreO + 1)      
     }
   }
@@ -89,7 +90,7 @@ if(gameState[a] && gameState[a] == gameState[b] && gameState[b] == gameState[c])
         <p className="text-xl font-black mb-4">Enter player's name </p>
         <input value={player1} onChange={handlePlayer1} className="h-10 border border-blue-600 w-64"/>
           <input value={player2} onChange={handlePlayer2} className="h-10 border border-blue-600 w-64 mt-2 mb-5"/>
-        <Button disabled={player2 == undefined} onClick={()=>(setGamePage(true))}> Let's Play</Button>
+        <Button disabled={player2 === undefined} onClick={()=>(setGamePage(true))}> Let's Play</Button>
         </div>
       }
   {gamePage == true && <div className="flex flex-col justify-center items-center h-full">
