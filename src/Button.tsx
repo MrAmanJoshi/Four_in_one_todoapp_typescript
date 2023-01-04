@@ -1,4 +1,4 @@
-import  { ButtonHTMLAttributes, FC } from "react";
+import  { ButtonHTMLAttributes, FC, memo } from "react";
 
 type ButtonProps={ 
   theme?: "primery" | "secondary" } & ButtonHTMLAttributes<HTMLButtonElement>
@@ -20,4 +20,4 @@ Button.defaultProps={
   theme: "primery"
 }
 
-export default Button;
+export default memo(Button);

@@ -3,15 +3,21 @@ import TodosList from "./TodosList"
 import DoneTodosList from "./DoneTodosList"
 import Button from "./Button"
 
-type todoObj = {title:string, id:string, done: boolean}
+type todoObj = {
+  title:string, 
+  id:string, 
+  done: boolean
+}
 
 const TodosPage: FC = () => {
 
+  const getTodo: todoObj[] = JSON.parse(localStorage.getItem("todos")|| "[]");
+ // const saveTodos = JSON.parse(getTodo);
   const [todo, setTodo] = useState('');
-
-  const [todoList, setTodoList]  = useState<todoObj[]>([]);
-
+// console.log('getItem', getTodo)
+  const [todoList, setTodoList]  = useState<todoObj[]>(getTodo);
   const [addTodoBtn, setAddTodoBtn] = useState(false)
+localStorage.setItem("todos", JSON.stringify(todoList))
 
   const unDoneTodos= todoList.filter(function(todos) {
     return todos.done === false
@@ -25,15 +31,16 @@ const TodosPage: FC = () => {
 
   const handleSaveTodo = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setTodoList([...todoList, { title: todo, id: todo, done: false }])
+const todos = [...todoList, { title: todo, id: todo, done: false }]
+    setTodoList(todos) 
     setTodo("")
   };
 
   const addTodoDoneList = (uDTodo: todoObj) => {
     const newTodoList = todoList.filter((todos) => todos.id !== uDTodo.id
     );
-
-    setTodoList([...newTodoList, { title: uDTodo.title, id: uDTodo.title, done: true }]);
+const todos =  ([...newTodoList, { title: uDTodo.title, id: uDTodo.title, done: true }]);
+    setTodoList(todos);
   };
 
   const addTodoUnDoneList = (cmpltTodos: todoObj) => {
@@ -48,6 +55,7 @@ const TodosPage: FC = () => {
     setAddTodoBtn(true)
   }
   const cancelButton = () => {
+    
     setAddTodoBtn(false)
   }
 
@@ -55,6 +63,7 @@ const TodosPage: FC = () => {
     const dltId = todoList.filter((deleteTodo) => (uDTodo.id ) !== deleteTodo.id)
     setTodoList(dltId)
   }
+  
   return (
 
     <div className="pl-3">
@@ -82,15 +91,13 @@ const TodosPage: FC = () => {
 
         <div className="border border-gray-100 drop-shadow-lg ml-3 mt-4 pt-5 px-3">
 
-
           <h4 className="text-lg font-semibold ">Create a todo</h4>
 
           <input onChange={handleAddTodo} type="text" placeholder="Write an article about XState" className=" border 
         border-yellow-600 hover:border-yellow-600 p-5 h-10 mt-5"/>
 
-          <div className="flex my-4">
-
-            <Button disabled={!todo} type="submit">Save</Button>
+  <div className="flex my-4">
+      <Button disabled={!todo} type="submit">Save</Button>
 
             <button onClick={cancelButton} className="bg-white border border-black text-black ml-4 px-4 py-2 rounded-lg ">Cancel</button>
           </div>

@@ -2,18 +2,19 @@ import TodosPage from "./TodosPage"
 import Header from "./Header"
 import DigitalTime from "./DigitalTime"
 import Weather from "./Weather"
-import TicTacToe from "./TicTacToe"
 import { Route, Routes } from "react-router"
-import { BrowserRouter} from 'react-router-dom';  
+import TicTacToe from "./TicTacToe"
+import Input from "./Input"
+import UnitConvaterPage from "./UnitConvaterPage"
 
   function App() {
 
+
   return (
-    <BrowserRouter>
         <>
-      <Header/>
+          
+           <Header/>
       <Routes>
-       
         
         <Route path="/" element={
       <TodosPage/>}></Route>
@@ -21,16 +22,17 @@ import { BrowserRouter} from 'react-router-dom';
         <Route path="/weather" element={
       <Weather/>}></Route>
         
-        <Route path="/tictactoe" element={
-      <TicTacToe />}></Route>
+        <Route path="/TicTacToeCopy" element={
+      <TicTacToe/>}></Route>
         
         <Route path="/clock" element={
       <DigitalTime/>}></Route>
+        <Route path="/unitConvater" element={
+      <UnitConvaterPage/>}></Route>
         
       </Routes>
-        
+
     </>
-      </BrowserRouter>
   )
 }
 
@@ -40,6 +42,6 @@ export default App;
 
  
        
-
+     
       
 */

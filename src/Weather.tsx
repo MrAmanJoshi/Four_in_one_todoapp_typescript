@@ -1,8 +1,7 @@
 import axios from "axios";
-import React, { ChangeEvent, FC, useEffect, useState } from "react";
-import {TiWeatherPartlySunny} from "react-icons/ti"
+import { ChangeEvent, FC, useEffect, useState } from "react";
+import {TiWeatherPartlySunny} from "react-icons/ti";
 import Loading from "./Loading";
-
 
 type WeatherProps = {};
 type searchCityType = string
@@ -37,20 +36,17 @@ useEffect(()=>{
   axios.get(url).then((response)=>{
     setresult(response.data)
     
-    console.log("result",result)
     setLoading(false)
   }).catch(()=>{
     console.log("error aa gya")
-    
     setLoading(false)
   })
-  
 },[searchCity])
 
-  
   return(<div className="">
     
   <div className="bg-blue-700 h-screen w-full object-cover h-screen">
+    
       <div className="flex flex-col items-center">
         <p className="text-5xl mt-2 font-bold text-white sm:text-4xl text-center"> Weather </p>
         <input className="h-10 w-64 border-2 border-blue-600 mt-10"  
@@ -62,8 +58,7 @@ value={searchCity} type='result' onChange={(e: ChangeEvent<HTMLInputElement>)=>{
         
         { loading == true && <div><Loading/></div> }
        
-        
-     { result != undefined && <div className="">
+     { result != undefined && <div>
        <p className="text-6xl mt-20 flex justify-center text-center font-medium text-white">
         <TiWeatherPartlySunny/>
       </p>
@@ -81,7 +76,6 @@ value={searchCity} type='result' onChange={(e: ChangeEvent<HTMLInputElement>)=>{
       <p className="text-xl text-white font-bold">Wind speed:  {result?.wind.speed}<span className="text-orange-400 "> m/sec</span> | humidity: {result?.main.humidity}<span className="text-orange-400 ">%</span> </p>
         </div>
        
-        
         <p className="text-7xl mt-12 font-bold text-white text-center ">{result?.main.temp}<span className="text-orange-400 ">°Cel</span></p>
          </div>}
         
